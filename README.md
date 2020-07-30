@@ -12,10 +12,16 @@ pip install -r requirements.txt
 
 ## Training
 
-To train DDR on toy examples, run this command:
+To train DDR on toy classification examples, run this command:
 
 ```train_toys
 python demo_toys.py --save 'Results/toys' --dataset 3
+```
+
+To train DDR on toy regression examples, run this command:
+
+```train_toys
+python demo_reg_toys.py --save 'Results/reg_toys' --model 2 --scenario 2
 ```
 
 To train DDR on MNIST dataset and get the evaluation results , run this command:
