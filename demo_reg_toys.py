@@ -38,7 +38,7 @@ args = parser.parse_args()
 
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 device = torch.device("cuda" if args.cuda else "cpu")
-args.save = args.save or 'work/sim_reg'
+args.save = args.save or 'work/toy_reg'
 
 torch.manual_seed(args.seed)
 if args.cuda:
