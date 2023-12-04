@@ -1,7 +1,7 @@
 # Deep Dimension Reduction for Supervised Representation Learning
 
 This repository is the demo implementation of [Deep Dimension Reduction for Supervised Representation Learning]. 
-Arxiv link: https://arxiv.org/abs/2006.05865
+arxiv link: https://arxiv.org/abs/2006.05865
 
 ## Requirements
 
