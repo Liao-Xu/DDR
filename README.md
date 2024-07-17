@@ -1,7 +1,7 @@
 # Deep Dimension Reduction for Supervised Representation Learning
 
 This repository is the demo implementation of [Deep Dimension Reduction for Supervised Representation Learning]. 
-arxiv link: https://arxiv.org/abs/2006.05865
+Paper link: https://ieeexplore.ieee.org/document/10456552
 
 ## Requirements
 
@@ -72,4 +72,15 @@ python train.py --save 'Results/MNIST_16' --latent_dim 16
 python train.py --save 'Results/MNIST_32' --latent_dim 32
 python train.py --save 'Results/MNIST_64' --latent_dim 64
 ```
-
+## Citation
+If you use this implementation in your research, please cite our paper:
+@ARTICLE{huang2024deep,
+  author={Huang, Jian and Jiao, Yuling and Liao, Xu and Liu, Jin and Yu, Zhou},
+  journal={IEEE Transactions on Information Theory}, 
+  title={Deep Dimension Reduction for Supervised Representation Learning}, 
+  year={2024},
+  volume={70},
+  number={5},
+  pages={3583-3598},
+  keywords={Dimensionality reduction;Representation learning;Estimation;Vectors;Linear programming;Data models;Covariance matrices;Conditional independence;distance covariance;f-divergence;nonparametric estimation;neural networks},
+  doi={10.1109/TIT.2023.3340658}}
