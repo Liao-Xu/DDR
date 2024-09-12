@@ -4,6 +4,16 @@ Welcome to DDR's Documentation
 Deep Dimension Reduction for Supervised Representation Learning
 ---------------------------------------------------------------
 
+Table of Contents
+-----------------
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   installation
+   usage
+   demo
+
 Introduction
 ------------
 
@@ -45,20 +55,3 @@ If you use DDR in your research, please cite our paper:
      pages={3583-3598},
      keywords={Dimensionality reduction;Representation learning;Estimation;Vectors;Linear programming;Data models;Covariance matrices;Conditional independence;distance covariance;f-divergence;nonparametric estimation;neural networks},
      doi={10.1109/TIT.2023.3340658}}
-
-Table of Contents
------------------
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   installation
-   usage
-   demo
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
