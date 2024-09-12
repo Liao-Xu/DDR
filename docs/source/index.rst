@@ -4,11 +4,9 @@ Welcome to DDR's Documentation
 Deep Dimension Reduction for Supervised Representation Learning
 ---------------------------------------------------------------
 
-Table of Contents
------------------
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
+   :caption: Table of Contents
 
    installation
    usage
