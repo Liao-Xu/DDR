@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DDR Demonstration: 3D Gaussian Dataset &mdash; DDR 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=f6245a2f"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Demo" href="../demo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DDR
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html#evaluation">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html#pre-trained-models">Pre-trained Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html#results">Results</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../demo.html">Demo</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DDR Demonstration: 3D Gaussian Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Dataset">Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Method">Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Visualization">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Imports-and-Setup">Imports and Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Simulated-data-loading">Simulated data loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Training-process">Training process</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DDR</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../demo.html">Demo</a></li>
+      <li class="breadcrumb-item active">DDR Demonstration: 3D Gaussian Dataset</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/demo_toy_3D.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="DDR-Demonstration:-3D-Gaussian-Dataset">
+<h1>DDR Demonstration: 3D Gaussian Dataset<a class="headerlink" href="#DDR-Demonstration:-3D-Gaussian-Dataset" title="Permalink to this heading"></a></h1>
+<p>This demo showcases the application of Discriminative Dimensionality Reduction (DDR) on a simulated 3D Gaussian dataset.</p>
+<section id="Dataset">
+<h2>Dataset<a class="headerlink" href="#Dataset" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>3D Gaussian</strong>: Six classes of data points sampled from 3D Gaussian distributions</p></li>
+<li><p>5,000 data points per class</p></li>
+</ul>
+</section>
+<section id="Method">
+<h2>Method<a class="headerlink" href="#Method" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Generate 3D Gaussian data</p></li>
+<li><p>Map data to 100 dimensions using random matrices</p></li>
+<li><p>Apply DDR to learn 2D features</p></li>
+</ol>
+</section>
+<section id="Visualization">
+<h2>Visualization<a class="headerlink" href="#Visualization" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>2D features learned by DDR are displayed</p></li>
+<li><p>Distributions projected onto unit circle for clarity</p></li>
+</ul>
+<p>This demonstration shows DDR’s ability to disentangle high-dimensional data into interpretable low-dimensional representations while maintaining class separability.</p>
+</section>
+<section id="Imports-and-Setup">
+<h2>Imports and Setup<a class="headerlink" href="#Imports-and-Setup" title="Permalink to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic functions</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">setproctitle</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># torch functions</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
+<span class="kn">from</span> <span class="nn">torchvision.utils</span> <span class="kn">import</span> <span class="n">save_image</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">TensorDataset</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
+
+<span class="c1"># local functions</span>
+<span class="kn">from</span> <span class="nn">model</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">toys</span> <span class="kn">import</span> <span class="n">toy_2d</span><span class="p">,</span> <span class="n">toy_3d</span>
+<span class="kn">from</span> <span class="nn">densenet_sim</span> <span class="kn">import</span> <span class="n">DenseNet</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--batchSz&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;mini batch size&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--nEpochs&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;the number of outter loop&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--latent_dim&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;the dimension of latent space&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--no-cuda&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;if TRUE, cuda will not be used&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--cuda_device&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;choose cuda device&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;path to save results&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--seed&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;random seed&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--dataset&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;1: circles data; 2: moons data; 3: 3d guassian data&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-f&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--file&#39;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path for input file. First line should contain number of lines to search in&#39;</span>
+    <span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="n">args</span><span class="o">.</span><span class="n">cuda</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">no_cuda</span> <span class="ow">and</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">cuda</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="n">args</span><span class="o">.</span><span class="n">save</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">save</span> <span class="ow">or</span> <span class="s1">&#39;Results/toys&#39;</span>
+<span class="n">setproctitle</span><span class="o">.</span><span class="n">setproctitle</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">save</span><span class="p">)</span>
+
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">seed</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">cuda</span><span class="p">:</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">set_device</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">cuda_device</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">save</span><span class="p">):</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">save</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">save</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Simulated-data-loading">
+<h1>Simulated data loading<a class="headerlink" href="#Simulated-data-loading" title="Permalink to this heading"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;num_workers&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;pin_memory&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">cuda</span> <span class="k">else</span> <span class="p">{}</span>
+
+<span class="c1"># get dataloaders</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">dataset</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">dataset</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">toy_2d</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">toy_3d</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">single_size</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+
+<span class="n">train_dat</span> <span class="o">=</span> <span class="n">TensorDataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
+<span class="n">trainLoader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dat</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">batchSz</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_dat</span> <span class="o">=</span> <span class="n">TensorDataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">y_test</span><span class="p">))</span>
+<span class="n">testLoader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dat</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">batchSz</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_demo_toy_3D_4_0.png" src="../_images/notebooks_demo_toy_3D_4_0.png" />
+</div>
+</div>
+</section>
+<section id="Training-process">
+<h1>Training process<a class="headerlink" href="#Training-process" title="Permalink to this heading"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># nets and optimizers setting</span>
+<span class="n">R_net</span> <span class="o">=</span> <span class="n">DenseNet</span><span class="p">(</span><span class="n">growthRate</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                 <span class="n">bottleneck</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ndim</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">latent_dim</span><span class="p">,</span> <span class="n">nClasses</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">D_net</span> <span class="o">=</span> <span class="n">Discriminator</span><span class="p">(</span><span class="n">ndim</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">latent_dim</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  + Number of params (R net) : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="nb">sum</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">nelement</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">R_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">()])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  + Number of params (D net) : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="nb">sum</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">nelement</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">D_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">()])))</span>
+
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">cuda</span><span class="p">:</span>
+    <span class="n">R_net</span> <span class="o">=</span> <span class="n">R_net</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+    <span class="n">D_net</span> <span class="o">=</span> <span class="n">D_net</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+
+<span class="n">optimizer_R</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">R_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+<span class="n">optimizer_D</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">D_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+
+<span class="n">trainF</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">save</span><span class="p">,</span> <span class="s1">&#39;train.csv&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">testF</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">save</span><span class="p">,</span> <span class="s1">&#39;test.csv&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  + Number of params (R net) : 20276
+  + Number of params (D net) : 16833
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">nEpochs</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">epoch</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span> <span class="n">zlr</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="k">elif</span> <span class="n">epoch</span> <span class="o">==</span> <span class="mi">50</span><span class="p">:</span> <span class="n">zlr</span> <span class="o">=</span> <span class="mf">1.5</span>
+    <span class="k">elif</span> <span class="n">epoch</span> <span class="o">==</span> <span class="mi">150</span><span class="p">:</span> <span class="n">zlr</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="n">train</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">R_net</span><span class="p">,</span> <span class="n">D_net</span><span class="p">,</span> <span class="n">trainLoader</span><span class="p">,</span> <span class="n">optimizer_R</span><span class="p">,</span> <span class="n">optimizer_D</span><span class="p">,</span> <span class="n">trainF</span><span class="p">,</span> <span class="n">zlr</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+    <span class="c1"># test(args, epoch, R_net, testLoader, optimizer_R, testF, device)</span>
+
+    <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">npLoader</span><span class="p">(</span><span class="n">trainLoader</span><span class="p">,</span> <span class="n">R_net</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+        <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">npLoader</span><span class="p">(</span><span class="n">testLoader</span><span class="p">,</span> <span class="n">R_net</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+        <span class="n">scatter_plots</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">trainF</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">testF</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Train Epoch: 1, Loss: 5.1337, Error: 100.0000, dCor_loss: 0.6496, VG: 0.0609, D: 0.69, OG: 0.68
+Train Epoch: 2, Loss: 5.0541, Error: 100.0000, dCor_loss: 0.6016, VG: 0.8047, D: 0.71, OG: 0.72
+Train Epoch: 3, Loss: 4.7975, Error: 99.1667, dCor_loss: 0.5783, VG: 0.0671, D: 0.71, OG: 0.70
+Train Epoch: 4, Loss: 4.7546, Error: 94.1667, dCor_loss: 0.6007, VG: 0.0883, D: 0.71, OG: 0.66
+Train Epoch: 5, Loss: 4.7377, Error: 77.5000, dCor_loss: 0.5922, VG: 0.0442, D: 0.68, OG: 0.65
+Train Epoch: 6, Loss: 4.7114, Error: 80.8333, dCor_loss: 0.6387, VG: 0.0507, D: 0.69, OG: 0.67
+Train Epoch: 7, Loss: 4.7707, Error: 87.5000, dCor_loss: 0.6083, VG: 0.0678, D: 0.70, OG: 0.72
+Train Epoch: 8, Loss: 4.7737, Error: 98.3333, dCor_loss: 0.6678, VG: 0.0416, D: 0.70, OG: 0.71
+Train Epoch: 9, Loss: 4.7226, Error: 84.1667, dCor_loss: 0.5547, VG: 0.3677, D: 0.67, OG: 0.78
+Train Epoch: 10, Loss: 4.7163, Error: 76.6667, dCor_loss: 0.6282, VG: 0.0448, D: 0.69, OG: 0.66
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_demo_toy_3D_7_1.png" src="../_images/notebooks_demo_toy_3D_7_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Train Epoch: 11, Loss: 4.8271, Error: 100.0000, dCor_loss: 0.5880, VG: 0.1435, D: 0.68, OG: 0.77
+Train Epoch: 12, Loss: 4.8515, Error: 98.3333, dCor_loss: 0.6039, VG: 0.6926, D: 0.68, OG: 0.73
+Train Epoch: 13, Loss: 4.8757, Error: 100.0000, dCor_loss: 0.6449, VG: 0.0342, D: 0.68, OG: 0.71
+Train Epoch: 14, Loss: 4.7594, Error: 95.0000, dCor_loss: 0.6188, VG: 0.0519, D: 0.69, OG: 0.67
+Train Epoch: 15, Loss: 4.8208, Error: 97.5000, dCor_loss: 0.5921, VG: 0.0295, D: 0.69, OG: 0.68
+Train Epoch: 16, Loss: 5.0234, Error: 100.0000, dCor_loss: 0.6548, VG: 0.0195, D: 0.69, OG: 0.71
+Train Epoch: 17, Loss: 4.9168, Error: 100.0000, dCor_loss: 0.5963, VG: 0.0322, D: 0.69, OG: 0.69
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../demo.html" class="btn btn-neutral float-left" title="Demo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Xu Liao.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

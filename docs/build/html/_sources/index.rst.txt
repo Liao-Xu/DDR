@@ -54,6 +54,7 @@ Table of Contents
 
    installation
    usage
+   demo
 
 Indices and tables
 ==================
